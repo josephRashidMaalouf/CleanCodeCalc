@@ -37,6 +37,18 @@ public record OperationChar
         };
         return result.IsOperationSet;
     }
+    public static bool TryParse(char? input, out OperationChar result)
+    {
+        result = input switch
+        {
+            '*' => new OperationChar('*'),
+            '/' => new OperationChar('/'),
+            '-' => new OperationChar('-'),
+            '+' => new OperationChar('+'),
+            _ => new OperationChar()
+        };
+        return result.IsOperationSet;
+    }
 
     public override string ToString()
     {
