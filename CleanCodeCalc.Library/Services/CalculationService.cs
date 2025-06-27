@@ -22,4 +22,12 @@ public class CalculationService
     {
         return _operationPicker[operation.Operation].Calculate(first, second);
     }
+
+    public double GetPrioritizedResult(CalculationInput input)
+    {
+        //look for prioritized operations
+        //if any, calculate values on each side
+        //calculate the remaining operations in order
+        //return result
+    }
 }
