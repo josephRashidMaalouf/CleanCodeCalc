@@ -25,7 +25,7 @@ public record OperationChar
         IsOperationSet = false;
     }
 
-    public static bool TryParse(string? input, out OperationChar result)
+    public static bool TryParse(string? input, out OperationChar? result)
     {
         result = input switch
         {
@@ -35,6 +35,13 @@ public record OperationChar
             "+" => new OperationChar('+'),
             _ => new OperationChar()
         };
+
+        if (!result.IsOperationSet)
+        {
+            result = null;
+            return false;
+        }
+
         return result.IsOperationSet;
     }
     public static bool TryParse(char? input, out OperationChar result)
