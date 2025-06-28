@@ -3,8 +3,8 @@
 
 public class CalculationInput
 {
-    public readonly bool IsOperationSet;
-    public string? Input { get; private set; }
+    public readonly bool IsInputSet;
+    public string Input { get; private set; } = string.Empty;
 
     public CalculationInput(string input)
     {
@@ -17,25 +17,32 @@ public class CalculationInput
         }
 
         Input = input;
-        IsOperationSet = true;
+        IsInputSet = true;
     }
 
     private CalculationInput(string input, bool isValidInput)
     {
         if (!isValidInput)
         {
-            IsOperationSet = false;
+            IsInputSet = false;
             return;
         }
         Input = input;
-        IsOperationSet = true;
+        IsInputSet = true;
     }
 
 
-    public static bool TryParse(string input, out CalculationInput result)
+    public static bool TryParse(string input, out CalculationInput? result)
     {
         result = new CalculationInput(input, ValidateInput(input.ToList()));
-        return result.IsOperationSet;
+
+        if (!result.IsInputSet)
+        {
+            result = null;
+            return false;
+        }
+
+        return result.IsInputSet;
     }
 
     private static bool ValidateInput(List<char> input)
@@ -46,7 +53,7 @@ public class CalculationInput
             return false;
         }
         //If any char in the string is not a digit nor an operation, the input is invalid
-        if (input.Any(c => !char.IsDigit(c)) && input.Any(c => !OperationChar.TryParse(c, out _)))
+        if (!input.All(c => char.IsDigit(c) || OperationChar.TryParse(c, out _)))
         {
             return false;
         }
@@ -61,7 +68,7 @@ public class CalculationInput
             return false;
         }
         //Input should contain at least one operator
-        if (input.Any(c => OperationChar.TryParse(c, out _)))
+        if (!input.Any(c => OperationChar.TryParse(c, out _)))
         {
             return false;
         }
