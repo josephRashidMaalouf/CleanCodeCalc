@@ -18,16 +18,25 @@ public class CalculationService
         };
     }
 
-    public double GetResult(double first, double second, OperationChar operation)
+    private double GetSimpleResult(double first, double second, OperationChar operation)
     {
         return _operationPicker[operation.Operation].Calculate(first, second);
     }
 
-    public double GetPrioritizedResult(CalculationInput input)
+    public double GetResult(CalculationInput input)
     {
+        double result = 0;
         //look for prioritized operations
+        var factors = input.Input.Split('*');
+
         //if any, calculate values on each side
+        if (factors.Any())
+        {
+
+        }
+
         //calculate the remaining operations in order
         //return result
+        return 0;
     }
 }

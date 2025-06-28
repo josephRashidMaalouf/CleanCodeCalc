@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeCalc.Library", "Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeCalc.Console", "CleanCodeCalc.Console\CleanCodeCalc.Console.csproj", "{72043349-224B-4B2D-8624-A9BD6489E542}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeCalc.Library.Tests", "CleanCodeCalc.Library.Tests\CleanCodeCalc.Library.Tests.csproj", "{519B0AC7-3EC2-49F7-BB8C-7F842B6E7E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{72043349-224B-4B2D-8624-A9BD6489E542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72043349-224B-4B2D-8624-A9BD6489E542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72043349-224B-4B2D-8624-A9BD6489E542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519B0AC7-3EC2-49F7-BB8C-7F842B6E7E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519B0AC7-3EC2-49F7-BB8C-7F842B6E7E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519B0AC7-3EC2-49F7-BB8C-7F842B6E7E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519B0AC7-3EC2-49F7-BB8C-7F842B6E7E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
