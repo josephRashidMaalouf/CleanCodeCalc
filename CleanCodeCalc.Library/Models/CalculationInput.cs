@@ -1,4 +1,6 @@
-﻿namespace CleanCodeCalc.Library.Models;
+﻿using System.Text;
+
+namespace CleanCodeCalc.Library.Models;
 
 
 public class CalculationInput
@@ -78,5 +80,28 @@ public class CalculationInput
     public override string ToString()
     {
         return Input.ToString();
+    }
+
+    public List<string> ToList()
+    {
+        List<string> output = new();
+        var str = string.Empty;
+        foreach (char c in Input)
+        {
+            if (char.IsDigit(c))
+            {
+                str += c;
+                continue;
+            }
+            output.Add(str);
+            str = string.Empty;
+            output.Add(c.ToString());
+        }
+
+        if (!string.IsNullOrWhiteSpace(str))
+        {
+            output.Add(str);
+        }
+        return output;
     }
 }

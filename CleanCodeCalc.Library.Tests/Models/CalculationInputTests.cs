@@ -83,4 +83,24 @@ public class CalculationInputTests
 
         Assert.Null(obj);
     }
+    [Fact]
+    public void ToList_ReturnsCorrectList()
+    {
+        //Arrange
+        var sut = new CalculationInput("1+23-4325*2/90");
+        var expected = new List<string>()
+        {
+            "1", "+", "23", "-", "4325", "*", "2", "/", "90"
+        };
+
+        //Act
+        var result = sut.ToList();
+
+        //Assert
+
+        for(int i = 0; i < result.Count; i ++)
+        {
+            Assert.Equal(expected[i], result[i]);
+        }
+    }
 }

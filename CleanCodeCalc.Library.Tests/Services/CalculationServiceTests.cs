@@ -13,12 +13,19 @@ public class CalculationServiceTests
     }
 
     [Theory]
-    [InlineData("2+3*5", (double)17)]
-    [InlineData("2+3*5*2", (double)32)]
-    [InlineData("2+3*5+1", (double)18)]
-    [InlineData("20/2-1", (double)9)]
-    [InlineData("2+3*5*2/4-4", (double)5)]
-    public void GetResult(string input, double expected)
+    [InlineData("2+3*5", 17)]
+    [InlineData("10+2*6", 22)]
+    [InlineData("100*2+12", 212)]
+    [InlineData("1+2+3", 6)]
+    [InlineData("5+6/2", 8)]
+    [InlineData("8-4-2", 2)]
+    [InlineData("18/3/3", 2)]
+    [InlineData("7+3*2-4", 9)]
+    [InlineData("9*2+5-3", 20)]
+    [InlineData("12+6/2*3", 21)]
+    [InlineData("1+2*3*4+5/6-7-8+9*2", 28.8333)]
+
+    public void GetResult_ReturnsCorrectCalculationResult(string input, double expected)
     {
         //Arrange
         var calcInput = new CalculationInput(input);

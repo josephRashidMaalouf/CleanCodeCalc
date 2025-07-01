@@ -25,18 +25,66 @@ public class CalculationService
 
     public double GetResult(CalculationInput input)
     {
-        double result = 0;
-        //look for prioritized operations
-        var factors = input.Input.Split('*');
+        List<string> postfix = GetPostFix(input);
+        var stack = new Stack<double>();
 
-        //if any, calculate values on each side
-        if (factors.Any())
+        foreach (var unit in postfix)
         {
+            if (double.TryParse(unit, out double number))
+            {
+                stack.Push(number);
+                continue;
+            }
+
+            if (!OperationChar.TryParse(unit, out OperationChar? operation) || operation is null)
+            {
+                throw new ArgumentException($"Found invalid char in the CalcInput: {unit}");
+            }
+
+            var second = stack.Pop();
+            var first = stack.Pop();
+            var result = GetSimpleResult(first, second, operation);
+            stack.Push(result);
+        }
+
+        return stack.Pop();
+    }
+
+    private List<string> GetPostFix(CalculationInput input)
+    {
+        var output = new List<string>();
+        var stack = new Stack<char>();
+        var priority = new Dictionary<string, int>()
+        {
+            { "*", 2 },
+            { "/", 2 },
+            { "+", 1 },
+            { "-", 1 },
+        };
+
+        foreach (var unit in input.ToList())
+        {
+            if (double.TryParse(unit, out _))
+            {
+                output.Add(unit);
+                continue;
+            }
+
+            if(!stack.TryPeek(out var peekResult) || priority[unit] > priority[peekResult.ToString()])
+            {
+                stack.Push(char.Parse(unit));
+                continue;
+            }
+
+            var popped = stack.Pop();
+            output.Add(popped.ToString());
+            stack.Push(char.Parse(unit));
+
 
         }
 
-        //calculate the remaining operations in order
-        //return result
-        return 0;
+        output.AddRange(stack.Select(x => x.ToString()));
+
+        return output;
     }
 }
