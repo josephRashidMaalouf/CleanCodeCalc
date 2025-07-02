@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CleanCodeCalc.Library.Models;
-using CleanCodeCalc.Library.Services;
+using CleanCodeCalc.Library.Utilities;
 
 Console.WriteLine("Hello, World!");
 

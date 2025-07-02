@@ -1,17 +1,10 @@
 ﻿using CleanCodeCalc.Library.Models;
-using CleanCodeCalc.Library.Services;
+using CleanCodeCalc.Library.Utilities;
 
-namespace CleanCodeCalc.Library.Tests.Services;
+namespace CleanCodeCalc.Library.Tests.Utilities;
 
-public class CalculationServiceTests
+public class CalculatorTests
 {
-    private readonly CalculationService _sut;
-
-    public CalculationServiceTests()
-    {
-        _sut = new CalculationService();
-    }
-
     [Theory]
     [InlineData("2+3*5", 17)]
     [InlineData("10+2*6", 22)]
@@ -29,7 +22,7 @@ public class CalculationServiceTests
         //Arrange
         var calcInput = new CalculationInput(input);
         //Act
-        var result = _sut.GetResult(calcInput);
+        var result = Calculator.Calculate(calcInput);
         //Assert
         Assert.Equal(expected, result);
     }
