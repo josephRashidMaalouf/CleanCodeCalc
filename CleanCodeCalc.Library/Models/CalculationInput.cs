@@ -5,10 +5,27 @@ namespace CleanCodeCalc.Library.Models;
 
 public class CalculationInput
 {
-    public readonly bool IsInputSet;
-    public string Input { get; private set; } = string.Empty;
+    public string Input { get; private set; } 
 
-    public CalculationInput(string input)
+    private CalculationInput(string input)
+    {
+        Input = input;
+    }
+
+    public static bool TryCreate(string input, out CalculationInput? result)
+    {
+        var validationResult = ValidateInput(input.ToList());
+
+        if (!validationResult)
+        {
+            result = null;
+            return false;
+        }
+
+        result = new CalculationInput(input);
+        return true;
+    }
+    public static CalculationInput Create(string input)
     {
         List<char> inputAsCharList = input.ToList();
 
@@ -18,33 +35,7 @@ public class CalculationInput
                 "Invalid calculation input. A valid calculation input must consist of at least 3 characters, contain only digits and operators, start and end with a digit and contain at least one valid operator");
         }
 
-        Input = input;
-        IsInputSet = true;
-    }
-
-    private CalculationInput(string input, bool isValidInput)
-    {
-        if (!isValidInput)
-        {
-            IsInputSet = false;
-            return;
-        }
-        Input = input;
-        IsInputSet = true;
-    }
-
-
-    public static bool TryParse(string input, out CalculationInput? result)
-    {
-        result = new CalculationInput(input, ValidateInput(input.ToList()));
-
-        if (!result.IsInputSet)
-        {
-            result = null;
-            return false;
-        }
-
-        return result.IsInputSet;
+        return new CalculationInput(input);
     }
 
     private static bool ValidateInput(List<char> input)

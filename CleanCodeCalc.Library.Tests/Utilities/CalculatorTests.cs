@@ -20,7 +20,7 @@ public class CalculatorTests
     public void GetResult_ReturnsCorrectCalculationResult(string input, double expected)
     {
         //Arrange
-        var calcInput = new CalculationInput(input);
+        var calcInput = CalculationInput.Create(input);
         //Act
         var result = Calculator.Calculate(calcInput);
         //Assert
