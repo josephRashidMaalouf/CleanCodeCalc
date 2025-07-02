@@ -1,7 +1,5 @@
 ﻿using CleanCodeCalc.Console.Handlers;
 using CleanCodeCalc.Console.Models;
-using CleanCodeCalc.Library.Models;
-using CleanCodeCalc.Library.Utilities;
 
 namespace CleanCodeCalc.Console;
 
