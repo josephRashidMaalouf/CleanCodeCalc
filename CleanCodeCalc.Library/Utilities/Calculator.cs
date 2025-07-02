@@ -32,7 +32,7 @@ public static class Calculator
                 continue;
             }
 
-            if (!OperationChar.TryParse(unit, out OperationChar? operation) || operation is null)
+            if (!OperationChar.TryCreate(unit, out OperationChar? operation) || operation is null)
             {
                 throw new ArgumentException($"Found invalid char in the CalcInput: {unit}");
             }

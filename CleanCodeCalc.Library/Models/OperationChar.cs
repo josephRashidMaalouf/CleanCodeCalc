@@ -4,57 +4,74 @@ namespace CleanCodeCalc.Library.Models;
 
 public record OperationChar
 {
-    public readonly bool IsOperationSet;
-    public char Operation { get; set; }
+    public char Operation { get; private set; }
 
-    public OperationChar(char operation)
+    private OperationChar(char operation)
     {
-        Operation = operation switch
-        {
-            '*' => '*',
-            '/' => '/',
-            '-' => '-',
-            '+' => '+',
-            _ => throw new InvalidOperationCharException()
-        };
-        IsOperationSet = true;
+        Operation = operation;
+    }
+    private OperationChar(string operation)
+    {
+        Operation = char.Parse(operation);
     }
 
-    private OperationChar()
+    public static OperationChar Create(char operation)
     {
-        IsOperationSet = false;
-    }
-
-    public static bool TryParse(string? input, out OperationChar? result)
-    {
-        result = input switch
+        var isValid = Validate(operation);
+        if (!isValid)
         {
-            "*" => new OperationChar('*'),
-            "/" => new OperationChar('/'),
-            "-" => new OperationChar('-'),
-            "+" => new OperationChar('+'),
-            _ => new OperationChar()
-        };
-
-        if (!result.IsOperationSet)
-        {
-            result = null;
-            return false;
+            throw new InvalidOperationCharException();
         }
 
-        return result.IsOperationSet;
+        return new OperationChar(operation);
     }
-    public static bool TryParse(char? input, out OperationChar result)
+    public static OperationChar Create(string operation)
     {
-        result = input switch
+        var isValid = Validate(operation);
+        if (!isValid)
         {
-            '*' => new OperationChar('*'),
-            '/' => new OperationChar('/'),
-            '-' => new OperationChar('-'),
-            '+' => new OperationChar('+'),
-            _ => new OperationChar()
+            throw new InvalidOperationCharException();
+        }
+
+        return new OperationChar(char.Parse(operation));
+    }
+
+    public static bool TryCreate(string input, out OperationChar? result)
+    {
+        var isValid = Validate(input);
+        result = isValid ? new OperationChar(input) : null;
+
+        return isValid;
+    }
+    public static bool TryParse(char input, out OperationChar? result)
+    {
+        var isValid = Validate(input);
+        result = isValid ? new OperationChar(input) : null;
+
+        return isValid;
+    }
+
+    private static bool Validate(char input)
+    {
+        return input switch
+        {
+            '*' => true,
+            '/' => true,
+            '-' => true,
+            '+' => true,
+            _ => false
         };
-        return result.IsOperationSet;
+    }
+    private static bool Validate(string input)
+    {
+        return input switch
+        {
+            "*" => true,
+            "/" => true,
+            "-" => true,
+            "+" => true,
+            _ => false
+        };
     }
 
     public override string ToString()
