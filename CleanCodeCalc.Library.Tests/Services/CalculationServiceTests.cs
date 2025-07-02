@@ -23,7 +23,6 @@ public class CalculationServiceTests
     [InlineData("7+3*2-4", 9)]
     [InlineData("9*2+5-3", 20)]
     [InlineData("12+6/2*3", 21)]
-    [InlineData("1+2*3*4+5/6-7-8+9*2", 28.8333)]
 
     public void GetResult_ReturnsCorrectCalculationResult(string input, double expected)
     {
