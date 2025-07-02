@@ -46,7 +46,7 @@ public class CalculationInput
             return false;
         }
         //If any char in the string is not a digit nor an operation, the input is invalid
-        if (!input.All(c => char.IsDigit(c) || OperationChar.TryParse(c, out _)))
+        if (!input.All(c => char.IsDigit(c) || OperationChar.TryCreate(c, out _)))
         {
             return false;
         }
@@ -61,7 +61,7 @@ public class CalculationInput
             return false;
         }
         //Input should contain at least one operator
-        if (!input.Any(c => OperationChar.TryParse(c, out _)))
+        if (!input.Any(c => OperationChar.TryCreate(c, out _)))
         {
             return false;
         }

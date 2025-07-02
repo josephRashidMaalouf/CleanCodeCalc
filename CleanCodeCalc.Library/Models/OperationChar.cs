@@ -43,7 +43,7 @@ public record OperationChar
 
         return isValid;
     }
-    public static bool TryParse(char input, out OperationChar? result)
+    public static bool TryCreate(char input, out OperationChar? result)
     {
         var isValid = Validate(input);
         result = isValid ? new OperationChar(input) : null;
