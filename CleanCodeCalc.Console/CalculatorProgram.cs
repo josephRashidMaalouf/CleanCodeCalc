@@ -18,6 +18,7 @@ public class CalculatorProgram
         while (true)
         {
             System.Console.Clear();
+            System.Console.WriteLine("**Calculator**");
             System.Console.WriteLine(_inputData.Total);
             System.Console.WriteLine(_inputData.CalculationInput);
             _inputData.UserInput = System.Console.ReadKey();
