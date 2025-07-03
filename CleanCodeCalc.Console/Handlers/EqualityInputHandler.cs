@@ -10,7 +10,11 @@ public class EqualityInputHandler : InputHandlerBase
     {
         if ((inputData.UserInput.KeyChar == '=' || inputData.UserInput.Key == ConsoleKey.Enter) && !string.IsNullOrWhiteSpace(inputData.CalculationInput))
         {
-            inputData.Total = Calculator.Calculate(CalculationInput.Create(inputData.CalculationInput));
+            if (CalculationInput.TryCreate(inputData.CalculationInput, out var calcInput) && calcInput is not null)
+            {
+                inputData.Total = Calculator.Calculate(calcInput);
+                inputData.CalculationInput = string.Empty;
+            }
         }
         base.Handle(inputData);
     }
