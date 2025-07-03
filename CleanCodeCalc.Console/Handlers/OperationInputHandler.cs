@@ -9,7 +9,6 @@ public class OperationInputHandler : InputHandlerBase
     {
         if (OperationChar.TryCreate(inputData.UserInput.KeyChar, out _) && !string.IsNullOrWhiteSpace(inputData.CalculationInput))
         {
-            inputData.IsOperationRequested = true;
             if (char.IsDigit(inputData.CalculationInput[^1]))
             {
                 inputData.CalculationInput += inputData.UserInput.KeyChar;

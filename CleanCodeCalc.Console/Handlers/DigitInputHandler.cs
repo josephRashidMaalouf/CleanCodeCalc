@@ -11,9 +11,8 @@ public class DigitInputHandler : InputHandlerBase
         if (char.IsDigit(inputData.UserInput.KeyChar))
         {
             inputData.CalculationInput += inputData.UserInput.KeyChar;
-            if (inputData.IsOperationRequested)
+            if (CalculationInput.TryCreate(inputData.CalculationInput, out var calcInput) && calcInput is not null)
             {
-                inputData.IsOperationRequested = false;
                 inputData.Total = Calculator.Calculate(CalculationInput.Create(inputData.CalculationInput));
             }
         }
