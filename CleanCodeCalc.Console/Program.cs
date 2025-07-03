@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using CleanCodeCalc.Console;
+﻿using CleanCodeCalc.Console;
 using CleanCodeCalc.Console.Handlers;
 
 IInputHandler inputHandler = new BackspaceInputHandler();
@@ -9,4 +7,5 @@ IInputHandler inputHandler = new BackspaceInputHandler();
     .SetNext(new DigitInputHandler())
     .SetNext(new OperationInputHandler())
     .SetNext(new EqualityInputHandler());
+
 new CalculatorProgram(inputHandler).Start();
