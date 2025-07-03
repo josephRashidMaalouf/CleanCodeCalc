@@ -10,4 +10,4 @@ In this project I wanted to put my clean coding knowledge to the test by buildin
 3. Navigate to the executable located in the bin folder and run it
 
 ### Features and limitation
-Just input the calculation you would like to make and watch it calculate it as you type! The calculator only supports the four basic arithmetic operations: +, -, * and /.
+Just input the calculation you would like to make and watch it calculate it as you type! Press enter to clear the input field. Press ctrl+c to exit the program. The calculator only supports the four basic arithmetic operations: +, -, * and /.
