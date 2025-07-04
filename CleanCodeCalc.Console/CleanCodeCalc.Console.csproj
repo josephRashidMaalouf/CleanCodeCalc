@@ -11,4 +11,8 @@
     <ProjectReference Include="..\CleanCodeCalc.Library\CleanCodeCalc.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>

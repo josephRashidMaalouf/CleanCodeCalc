@@ -1,11 +1,16 @@
 ﻿using CleanCodeCalc.Console;
+using CleanCodeCalc.Console.Builders;
 using CleanCodeCalc.Console.Handlers;
 
-IInputHandler inputHandler = new BackspaceInputHandler();
 
-    inputHandler
-    .SetNext(new DigitInputHandler())
-    .SetNext(new OperationInputHandler())
-    .SetNext(new EqualityInputHandler());
+var builder = new CalculatorAppBuilder();
 
-new CalculatorProgram(inputHandler).Start();
+builder
+    .AddHandler(new BackspaceInputHandler())
+    .AddHandler(new DigitInputHandler())
+    .AddHandler(new OperationInputHandler())
+    .AddHandler(new EqualityInputHandler());
+
+var app = builder.Build();
+
+app.Start();
